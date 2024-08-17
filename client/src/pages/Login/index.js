@@ -70,7 +70,7 @@ function Login() {
 
           <div className="text-center mt-2 flex flex-col gap-1 ">
             <Button title="Login" type="submit" />
-            <Link to="/register" className="small-text text-primary text-sm underline">Don't have an account? Click here to Login</Link>
+            <Link to="/register" className="small-text text-primary text-sm underline">Don't have an account? Click here to Register</Link>
           </div>
         </Form>
       </div>
