@@ -76,6 +76,14 @@ table{
   border-radius: 4px;
   width: 100%;
 }
+.book-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book-item:hover {
+  transform: scale(1.05); /* Enlarge the element slightly */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add shadow for better effect */
+}
 @keyframes loader-anim {
   0% {
     transform: rotate(0deg);
