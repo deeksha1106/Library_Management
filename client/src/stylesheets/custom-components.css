@@ -78,6 +78,10 @@ table{
 }
 .book-item {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+   margin-bottom: 7.5px;
+  margin-left: 7.5px;
+  margin-right: 7.5px;
+  margin-top: 7.5px;
 }
 
 .book-item:hover {
