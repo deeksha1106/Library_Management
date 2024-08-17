@@ -46,7 +46,7 @@ useEffect(() => {
                 color = {book.availableCopies > 0 ? "green" : "red"}
                 >
 
-                <div className='rounded bg-white p-2 shadow flex flex-col gap-1 '>
+                <div className='book-item rounded bg-white p-2 shadow flex flex-col gap-1 '>
                   <img src ={book.image} height = "350px" />
                   <h1 className='text-md text-secondary uppercase font-bold mt-2'>
                     {book.title}
