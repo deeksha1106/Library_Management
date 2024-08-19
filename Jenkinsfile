@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'NodeJS_22' // Make sure this matches the name you configured in Jenkins
+        nodejs 'NodeJS_22' // Ensure this matches the name you configured in Jenkins
     }
 
     stages {
@@ -15,12 +15,8 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 script {
-                    dir('server') {
-                        bat 'npm install'
-                    }
-                    dir('client') {
-                        bat 'npm install'
-                    }
+                    // Install dependencies in both server and client directories
+                    bat 'npm install'
                 }
             }
         }
@@ -28,12 +24,19 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    dir('client') {
-                        bat 'npm run build'
-                    }
+                    // Run build script from package.json
+                    bat 'npm run build'
                 }
             }
         }
+        stage('Debug') {
+    steps {
+        script {
+            bat 'dir'
+        }
+    }
+}
+
 
         stage('Test') {
             steps {
