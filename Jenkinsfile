@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'NodeJS' // Ensure you have NodeJS installed in Jenkins
+        nodejs 'NodeJS' // Make sure this matches the name you configured in Jenkins
     }
 
     stages {
@@ -30,15 +30,17 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage('Deploy to Render') {
             steps {
                 script {
-            withCredentials([string(credentialsId: 'render-api-key', variable: 'RENDER_API_KEY')]) {
-                sh '''
-                curl -X POST https://api.render.com/v1/services/srv-cqvol58gph6c7390aha0/deploys \
-                -H "Authorization: Bearer ${RENDER_API_KEY}" \
-                -H "Content-Type: application/json"
-                '''
+                    withCredentials([string(credentialsId: 'render-api-key', variable: 'RENDER_API_KEY')]) {
+                        sh '''
+                        curl -X POST https://api.render.com/v1/services/srv-cqvol58gph6c7390aha0/deploys \
+                        -H "Authorization: Bearer ${RENDER_API_KEY}" \
+                        -H "Content-Type: application/json"
+                        '''
+                    }
+                }
             }
         }
     }
