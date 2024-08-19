@@ -8,15 +8,22 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/alokrajhans/City-Central-Library.git'
+                git branch: 'master', url: 'https://github.com/alokrajhans/City-Central-Library.git'
             }
         }
 
         stage('Install Dependencies') {
             steps {
                 script {
-                    // Install dependencies in both server and client directories
-                    bat 'npm install'
+                    // Install dependencies for server
+                    dir('server') {
+                        bat 'npm install'
+                    }
+
+                    // Install dependencies for client
+                    dir('client') {
+                        bat 'npm install'
+                    }
                 }
             }
         }
@@ -24,23 +31,11 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    // Run build script from package.json
-                    bat 'npm run build'
+                    // Build the client application
+                    dir('client') {
+                        bat 'npm run build'
+                    }
                 }
-            }
-        }
-        stage('Debug') {
-    steps {
-        script {
-            bat 'dir'
-        }
-    }
-}
-
-
-        stage('Test') {
-            steps {
-                echo 'No tests specified.'
             }
         }
 
