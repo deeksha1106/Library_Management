@@ -2,13 +2,13 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'NodeJS' // Reference the NodeJS tool installed in Jenkins
+        nodejs 'NodeJS' // Ensure you have NodeJS installed in Jenkins
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/alokrajhans/City-Central-Library.git'
+                git branch: 'main', url: 'https://github.com/alokrajhans/City-Central-Library.git'
             }
         }
 
@@ -32,30 +32,13 @@ pipeline {
 
         stage('Deploy') {
             steps {
-              script {
-            // SSH into the server
-            sh '''
-            ssh -o StrictHostKeyChecking=no user@your-server-ip << 'EOF'
-                # Navigate to the project directory
-                cd /C:/Users/Hp/Desktop/City Central Library
-
-                # Pull the latest changes from the repository
-                git pull https://github.com/alokrajhans/City-Central-Library.git main
-
-                # Install any new dependencies
-                npm install
-
-                # Build the project (if necessary)
-                npm run build
-
-                # Restart the application using PM2
-                pm2 restart city-central-library || pm2 start npm --name "city-central-library" -- start
-
-                # Exit the SSH session
-                exit
-            EOF
-            '''
-        }
+                script {
+            withCredentials([string(credentialsId: 'render-api-key', variable: 'RENDER_API_KEY')]) {
+                sh '''
+                curl -X POST https://api.render.com/v1/services/srv-cqvol58gph6c7390aha0/deploys \
+                -H "Authorization: Bearer ${RENDER_API_KEY}" \
+                -H "Content-Type: application/json"
+                '''
             }
         }
     }
