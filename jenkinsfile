@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'git@github.com:alokrajhans/City-Central-Library.git'
+                git branch: 'master', url: 'https://github.com/alokrajhans/City-Central-Library.git'
             }
         }
 
