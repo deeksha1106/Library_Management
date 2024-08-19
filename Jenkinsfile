@@ -16,10 +16,10 @@ pipeline {
             steps {
                 script {
                     dir('server') {
-                        sh 'npm install'
+                        bat 'npm install'
                     }
                     dir('client') {
-                        sh 'npm install'
+                        bat 'npm install'
                     }
                 }
             }
@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     dir('client') {
-                        sh 'npm run build'
+                        bat 'npm run build'
                     }
                 }
             }
@@ -45,9 +45,9 @@ pipeline {
             steps {
                 script {
                     withCredentials([string(credentialsId: 'render-api-key', variable: 'RENDER_API_KEY')]) {
-                        sh '''
-                        curl -X POST https://api.render.com/v1/services/srv-cqvol58gph6c7390aha0/deploys \
-                        -H "Authorization: Bearer ${RENDER_API_KEY}" \
+                        bat '''
+                        curl -X POST https://api.render.com/v1/services/srv-cqvol58gph6c7390aha0/deploys ^
+                        -H "Authorization: Bearer %RENDER_API_KEY%" ^
                         -H "Content-Type: application/json"
                         '''
                     }
