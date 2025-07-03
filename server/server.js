@@ -3,7 +3,7 @@ const cors = require('cors'); // ✅ Import cors
 const app = express();
 
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://library-management-1-exve.onrender.com'], // ✅ allow frontend
+    origin: ['http://localhost:3000','https://library-management-b6ev.onrender.com','https://library-management-1-exve.onrender.com'], // ✅ allow frontend
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization']
