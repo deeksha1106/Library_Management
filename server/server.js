@@ -27,13 +27,13 @@ app.use("/api/issues", issuesRoute);
 app.use("/api/reports", reportsRoute);
 
 // ✅ Serve React frontend in production
-const path = require("path");
-__dirname = path.resolve();
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "/client/build")));
-    app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-    });
-}
+// const path = require("path");
+// __dirname = path.resolve();
+// if (process.env.NODE_ENV === "production") {
+//     app.use(express.static(path.join(__dirname, "/client/build")));
+//     app.get("*", (req, res) => {
+//         res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+//     });
+// }
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
